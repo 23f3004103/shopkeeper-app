@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Sales Export</h3>
+<p>Download all sales in <a href="{{ url_for('reports.export_sales') }}" class="btn btn-primary">CSV format</a></p>
+{% endblock %}

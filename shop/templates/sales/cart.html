@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Sales (Cart)</h3>
+{# Removed server-side search box in favor of client-side typeahead #}
+
+<form method="post">
+  <div class="mb-3 row">
+    <div class="col-md-6">
+      <label class="form-label">Add item (type SKU or name)</label>
+      <input id="add_item_input" data-typeahead="/inventory/items" class="form-control" placeholder="Start typing SKU or name...">
+    </div>
+  </div>
+  <table id="dynamic-cart-table" class="table">
+    <thead><tr><th>SKU</th><th>Name</th><th>Price</th><th>Tax %</th><th>Qty</th><th></th></tr></thead>
+    <tbody>
+      {% for it in items %}
+        <tr>
+          <td><input type="hidden" name="sku_{{ it.sku }}" value="on">{{ it.sku }}</td>
+          <td>{{ it.name }}</td>
+          <td>{{ '%.2f' % it.sale_price }}</td>
+          <td>{{ '%.2f' % it.tax_rate }}</td>
+          <td style="width:140px"><input class="form-control" type="number" step="0.01" min="0" name="qty_{{ it.sku }}" value="1"></td>
+          <td><button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove()">Remove</button></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="row g-3">
+    <div class="col-md-3"><label class="form-label">Discount</label><input id="discount_input" class="form-control" name="discount" value="0"></div>
+    <div class="col-md-3"><label class="form-label">Customer</label><input class="form-control" name="customer_name"></div>
+    <div class="col-md-3"><label class="form-label">Payment</label>
+      <select class="form-select" name="payment_method" id="payment_method">
+        <option value="cash">Cash</option>
+        <option value="online">Online</option>
+        <option value="credit">Credit</option>
+      </select>
+    </div>
+    <div class="col-md-3 cash-only"><label class="form-label">Paid Amount</label><input id="paid_amount" class="form-control" name="paid_amount" value="0"></div>
+    <div class="col-md-3 online-only d-none"><label class="form-label">Provider</label><input class="form-control" name="provider" placeholder="eSewa/Khalti/Bank"></div>
+    <div class="col-md-3 online-only d-none"><label class="form-label">Reference</label><input class="form-control" name="reference"></div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <div class="border rounded p-3">
+        <div class="d-flex justify-content-between"><strong>Subtotal</strong><span id="cart_subtotal">0.00</span></div>
+        <div class="d-flex justify-content-between"><strong>Tax</strong><span id="cart_tax">0.00</span></div>
+        <div class="d-flex justify-content-between"><strong>Discount</strong><span id="cart_discount">0.00</span></div>
+        <hr>
+        <div class="d-flex justify-content-between"><strong>Total</strong><span id="cart_total">0.00</span></div>
+      </div>
+    </div>
+    <div class="col-md-6 text-end">
+      <button class="btn btn-primary" id="checkout_btn">Checkout</button>
+    </div>
+  </div>
+</form>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}

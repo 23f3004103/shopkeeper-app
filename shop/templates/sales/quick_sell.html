@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Quick Sell</h3>
+<form method="post" class="row g-3">
+  <div class="col-md-3"><input class="form-control" name="sku" placeholder="SKU" required></div>
+  <div class="col-md-3"><input class="form-control" type="number" step="0.01" name="qty" value="1"></div>
+  <div class="col-md-3">
+    <select class="form-select" name="payment_method">
+      <option value="cash">Cash</option>
+      <option value="online">Online</option>
+      <option value="credit">Credit</option>
+    </select>
+  </div>
+  <div class="col-md-3"><button class="btn btn-primary">Sell</button></div>
+</form>
+{% endblock %}

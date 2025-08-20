@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Dashboard</h3>
+<div class="row g-3">
+  <div class="col-md-3">
+    <div class="card"><div class="card-body">
+      <div>Sales (24h)</div>
+      <div class="fs-4">Rs {{ '%.2f' % sales_24h }}</div>
+    </div></div>
+  </div>
+  <div class="col-md-3">
+    <div class="card"><div class="card-body">
+      <div>Sales (7d)</div>
+      <div class="fs-4">Rs {{ '%.2f' % sales_7d }}</div>
+    </div></div>
+  </div>
+  <div class="col-md-6">
+    <div class="card"><div class="card-body">
+      <div>Top Items</div>
+      <ul class="mb-0">
+        {% for item, qty in top_items %}
+          <li>{{ item.name }} — {{ qty }}</li>
+        {% endfor %}
+      </ul>
+    </div></div>
+  </div>
+  <div class="col-md-12">
+    <div class="alert alert-warning mt-3">Low stock items: {{ low_stock }}</div>
+  </div>
+</div>
+{% endblock %}

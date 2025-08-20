@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Receipt {{ sale.invoice_no }}</h3>
+<p>Customer: {{ sale.customer_name or 'Walk-in' }} | Method: {{ sale.payment_method }} | Total: Rs {{ '%.2f' % sale.total }}</p>
+<table class="table">
+  <thead><tr><th>Item</th><th>Qty</th><th>Price</th><th>Tax%</th><th>Line total</th></tr></thead>
+  <tbody>
+    {% for it in items %}
+      <tr><td>{{ it.item.name }}</td><td>{{ it.qty }}</td><td>{{ '%.2f' % it.unit_price }}</td><td>{{ '%.2f' % it.tax_rate }}</td><td>{{ '%.2f' % it.line_total }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{# Print removed: return to cart silently after checkout #}
+{% endblock %}

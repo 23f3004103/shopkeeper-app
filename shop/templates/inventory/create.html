@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>New Item</h3>
+<form method="post">
+  {{ form.hidden_tag() }}
+  {% for field in form %}
+    {% if field.type != 'CSRFToken' and field.type != 'SubmitField' %}
+      <div class="mb-3">
+        {{ field.label }}
+        {% if field.name == 'supplier' %}
+          {{ field(class="form-control", **{'data-typeahead':'/inventory/items'}) }}
+        {% else %}
+          {{ field(class="form-control") }}
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

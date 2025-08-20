@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Inventory</h3>
+<form class="row g-2 mb-3">
+  <div class="col-auto">
+    <input class="form-control" name="q" placeholder="Search by name or SKU" value="{{ request.args.get('q','') }}">
+  </div>
+  <div class="col-auto">
+    <a href="{{ url_for('inventory.create_item') }}" class="btn btn-success">+ New Item</a>
+    <a href="{{ url_for('inventory.import_items') }}" class="btn btn-secondary">Import CSV</a>
+    <a href="{{ url_for('inventory.export_items') }}" class="btn btn-outline-primary">Export CSV</a>
+    <!-- a delete functionality which allows to select items and delete at once -->
+    <button type="button" class="btn btn-danger" id="delete_selected">Delete</button>
+    <!-- a select button which toggle a check box in front of each item to be ticked and selected  -->
+    <button type="button" class="btn btn-outline-secondary" id="select_items">Select Items</button>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead><tr><th><input type="checkbox" id="toggle_all"></th><th>SKU</th><th>Name</th><th>Stock</th><th>Min</th><th>Expiry</th><th>Price</th></tr></thead>
+  <tbody>
+    {% for it in items %}
+      <tr class="{% if it.stock_qty <= it.min_qty %}table-warning{% endif %}">
+        <td><input type="checkbox" name="item_select" value="{{ it.id }}" class="item-checkbox"></td>
+        <td>{{ it.sku }}</td>
+        <td>{{ it.name }}</td>
+        <td>{{ it.stock_qty }}</td>
+        <td>{{ it.min_qty }}</td>
+        <td>{{ it.expiry_date or "-" }}</td>
+        <td>Rs {{ '%.2f' % it.sale_price }}</td>
+        <td><a class="btn btn-sm btn-outline-primary" href="{{ url_for('inventory.edit_item', item_id=it.id) }}">Edit</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

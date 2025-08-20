@@ -1,0 +1,14 @@
+sku,name,category,unit,cost_price,sale_price,tax_rate,stock_qty,min_qty,expiry_date,supplier,notes
+BEV-001,Coca-Cola 330ml,Beverages,can,0.20,0.60,13.00,120,10,,Coca-Cola Ltd.,Popular soft drink
+SNK-010,Lays Classic 70g,Snacks,pcs,0.30,0.90,13.00,80,8,,PepsiCo,Best seller
+DAI-101,Whole Milk 1L,Dairy,litre,0.50,1.20,5.00,50,5,2025-09-10,Local Dairy,Keep refrigerated
+BAK-200,White Bread 500g,Bakery,loaf,0.25,0.75,5.00,40,5,2025-08-25,Bakery Co.,Fresh daily
+CLN-050,Detergent 2kg,Household,pack,2.50,4.50,13.00,30,3,,CleanCorp,High-efficiency
+ELE-330,AA Alkaline Battery,Electronics,box,1.20,2.50,13.00,60,10,,PowerHouse,Pack of 4
+FRT-015,Bananas (per kg),Produce,kg,0.40,0.80,0.00,25,5,2025-08-22,Farmers Market,Perishable
+HYG-110,Toothpaste 100g,Personal Care,tube,0.70,1.80,13.00,35,5,,OralCare,Mint flavor
+STA-001,Ink Pen Blue,Stationery,pcs,0.05,0.20,0.00,200,20,,OfficeSupplies,Disposable pen
+FRO-900,Frozen Peas 500g,Frozen,bag,0.80,1.90,5.00,45,5,,FrozenFarm,Keep frozen
+DAI-102,Buttermilk 1L,Dairy,litre,0.60,1.30,5.00,50,5,2025-09-10,Local Dairy,Keep refrigerated
+BAK-201,Brown Bread 500g,Bakery,loaf,0.25,0.75,5.00,40,5,2025-08-25,Bakery Co.,Fresh daily
+CLN-051,Detergent 2kg,Household,pack,2.50,4.50,13.00,30,3,,SuperClean,High-efficiency

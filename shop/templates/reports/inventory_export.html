@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Inventory Export</h3>
+<p>Download the full inventory <a href="{{ url_for('inventory.export_items') }}" class="btn btn-primary">Download CSV</a></p>
+{% endblock %}

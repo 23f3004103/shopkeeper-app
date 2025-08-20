@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Alerts</h3>
+<ul class="list-group">
+  {% for a in alerts %}
+    <li class="list-group-item list-group-item-{% if a.severity=='danger' %}danger{% elif a.severity=='warning' %}warning{% else %}light{% endif %}">
+      {{ a.message }}
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

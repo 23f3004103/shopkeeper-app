@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Import Inventory (CSV)</h3>
+<form method="post" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">{{ form.file.label }} {{ form.file(class="form-control") }}</div>
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+<p>CSV columns: sku,name,category,unit,cost_price,sale_price,tax_rate,stock_qty,min_qty,expiry_date,supplier,notes</p>
+{% endblock %}

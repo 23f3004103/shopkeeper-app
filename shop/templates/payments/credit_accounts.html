@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Credit Accounts</h3>
+<form class="row g-2 mb-3">
+  <div class="col-auto"><input class="form-control" name="q" placeholder="Search customer"></div>
+  <div class="col-auto"><button class="btn btn-outline-secondary">Search</button></div>
+</form>
+<table class="table table-striped">
+  <thead><tr><th>Customer</th><th>Outstanding</th><th></th></tr></thead>
+  <tbody>
+    {% for a in accounts %}
+      <tr><td>{{ a.customer_name }}</td><td>Rs {{ '%.2f' % a.outstanding }}</td><td><a href="{{ url_for('payments.account_detail', acct_id=a.id) }}">View</a></td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

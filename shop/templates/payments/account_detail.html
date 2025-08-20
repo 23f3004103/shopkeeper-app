@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ acct.customer_name }}</h3>
+<p>Outstanding: Rs {{ '%.2f' % acct.outstanding }}</p>
+<form method="post" class="row g-2 mb-3">
+  <div class="col-auto"><input class="form-control" name="amount" placeholder="Payment amount"></div>
+  <div class="col-auto"><input class="form-control" name="notes" placeholder="Notes" value="Payment"></div>
+  <div class="col-auto"><button class="btn btn-primary">Record Payment</button></div>
+</form>
+<table class="table">
+  <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Notes</th></tr></thead>
+  <tbody>
+    {% for t in txns %}
+      <tr><td>{{ t.at.date() }}</td><td>{{ t.type }}</td><td>{{ '%.2f' % t.amount }}</td><td>{{ t.notes }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

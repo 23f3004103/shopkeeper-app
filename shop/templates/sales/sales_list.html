@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Sales List</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Invoice</th>
+      <th>Customer</th>
+      <th>Date</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in sales %}
+      <tr>
+        <td>{{ s.invoice_no }}</td>
+        <td>{{ s.customer_name or "" }}</td>
+        <td>{{ s.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>Rs {{ '%.2f' % s.total }}</td>
+        <td><a href="{{ url_for('sales.sale_detail', sale_id=s.id) }}">Details</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

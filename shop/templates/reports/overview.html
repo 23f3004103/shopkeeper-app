@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Reports Overview</h3>
+<p>See the dashboard for summary charts and sales exports.</p>
+<ul>
+  <li><a href="{{ url_for('reports.dashboard') }}">Dashboard</a></li>
+  <li><a href="{{ url_for('reports.export_sales') }}">Export Sales CSV</a></li>
+  <li><a href="{{ url_for('inventory.export_items') }}">Export Inventory CSV</a></li>
+</ul>
+{% endblock %}
